@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package decaronaapp;
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author airto
@@ -18,9 +19,12 @@ class Transporte{
 	private final String localSaida;
 	private final int retorno;
 	private final String localRetorno;
+        private final int id_car2;
+        
+        private static List<PontoTuristico> listaPontos = new ArrayList<>();
         
         
-        public Transporte(String placa, String tipo, Double valor, Integer capacidade, Integer saida, String localSaida, Integer retorno, String localRetorno){
+        public Transporte(String placa, String tipo, Double valor, Integer capacidade, Integer saida, String localSaida, Integer retorno, String localRetorno, Integer id_car2){
         this.placa = placa;
         this.tipo = tipo;
         this.valor = valor;
@@ -29,8 +33,10 @@ class Transporte{
         this.localSaida = localSaida;
         this.retorno = retorno;
         this.localRetorno = localRetorno;
-        
+        this.id_car2 = id_car2;
         }
+        
+
                 
 
         public String getPlaca(){

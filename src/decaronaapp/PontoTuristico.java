@@ -15,16 +15,18 @@ class PontoTuristico{
 	private final String bairro;
 	private final int abertura;
 	private final int fechamento;
+        private final int id_ponto;
 
-        public PontoTuristico(String nome, String bairro, Integer abertura, Integer fechamento){
+        public PontoTuristico(String nome, String bairro, Integer abertura, Integer fechamento, Integer id_ponto){
         this.nome = nome;
         this.bairro = bairro;
         this.abertura = abertura;
         this.fechamento = fechamento;
+        this.id_ponto = id_ponto;
         }
         
         public int getIdPonto(){
-        return this.id;
+        return this.id_ponto;
         }
         
         

@@ -38,7 +38,7 @@ public class DeCaronaApp {
         int opcao;
         
         System.out.println("Bem vindo ao Decarona, o que deseja fazer?\n");
-        System.out.println("1 - cadastrar caronista\n2 - Cadastrar veículo\n3 - Cadastrar ponto turístico\n4 - Listar ponto turístico\n0 - Sair");
+        System.out.println("1 - cadastrar caronista\n2 - Cadastrar veículo\n3 - Cadastrar ponto turístico\n4 - Consultar ponto turístico\n0 - Sair");
         
         opcao = Console.readInt();
         
@@ -71,6 +71,8 @@ public class DeCaronaApp {
             Caronista c1 = new Caronista(cpf, rg, nome, idade);
             
             listaCaronista.add(c1);
+            
+            
             
             menu();
          }
@@ -113,7 +115,9 @@ public class DeCaronaApp {
             System.out.println("Local de retorno: ");
             String localRetorno = Console.readString();
             
-            Transporte t1 = new Transporte(placa, tipo, valor, capacidade, horaSaida, localSaida, horaRetorno, localRetorno);
+            Integer id_car2 = listaTransporte.size() + 1;
+            
+            Transporte t1 = new Transporte(placa, tipo, valor, capacidade, horaSaida, localSaida, horaRetorno, localRetorno, id_car2);
             
             listaTransporte.add(t1);
             
@@ -136,13 +140,35 @@ public class DeCaronaApp {
             
             System.out.println("Informe o fechamento do ponto turístco: ");
             Integer horaFechamento = Console.readInt();
+            
+            Integer id_ponto = listaPonto.size() +1;
 
-            PontoTuristico pt1 = new PontoTuristico(nomePonto, bairro, horaAbertura, horaFechamento);
+            PontoTuristico pt1 = new PontoTuristico(nomePonto, bairro, horaAbertura, horaFechamento, id_ponto);
             
             listaPonto.add(pt1);
             
             menu();
             }
+        
+        if(opcao == 4){
+            
+            System.out.println("Informe o ID do ponto buscado: ");
+            
+            Integer id_busca = Console.readInt();
+            
+            for(int i = 0; i < listaPonto.size(); i++){
+                if(listaPonto.get(i).getIdPonto() == id_busca){
+                    System.out.println("As informações do ponto turístico: ");
+                    System.out.println("Local: " +listaPonto.get(i).getLocaPontoTuristico());
+                    System.out.println("Nome: " +listaPonto.get(i).getNomePontoTuristico());
+                    System.out.println("Horário de abertura:  " +listaPonto.get(i).getAbertura());
+                    System.out.println("Horário de fechamento: " +listaPonto.get(i).getFechamento());
+                    System.out.println("ID do ponto turístico: " +listaPonto.get(i).getIdPonto());
+                }
+            }
+                System.out.println("ID inválido!\n");
+            menu();
+        }
         }
 }
         
