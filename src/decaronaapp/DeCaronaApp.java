@@ -10,6 +10,7 @@ import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 /**
@@ -38,8 +39,9 @@ public class DeCaronaApp {
         int opcao;
         
         System.out.println("Bem vindo ao Decarona, o que deseja fazer?\n");
-        System.out.println("1 - cadastrar caronista\n2 - Cadastrar veículo\n3 - Cadastrar ponto turístico\n4 - Consultar ponto turístico\n0 - Sair");
-        
+        System.out.println("1 - cadastrar caronista\n2 - Cadastrar veículo\n3 - Cadastrar ponto turístico\n4 - Consultar ponto turístico");
+        System.out.println("5 - Consultar Transporte\n6 - Buscar Caronista\n7 - Consultar pontos por bairro");
+        System.out.println("8 - Consulta de transporte por ponto turístico\n0 - Sair");
         opcao = Console.readInt();
         
             if(opcao == 1){
@@ -68,11 +70,14 @@ public class DeCaronaApp {
             System.out.println("Idade: ");
             Integer idade = Console.readInt();
             
-            Caronista c1 = new Caronista(cpf, rg, nome, idade);
+            Integer id_caro = listaCaronista.size() + 1;
+            
+            Caronista c1 = new Caronista(cpf, rg, nome, idade, id_caro);
             
             listaCaronista.add(c1);
+            listaCaronistaTransporte.add(c1);
             
-            
+         
             
             menu();
          }
@@ -152,7 +157,7 @@ public class DeCaronaApp {
         
         if(opcao == 4){
             
-            System.out.println("Informe o ID do ponto buscado: ");
+            System.out.println("Informe o ID do ponto turístico a ser buscado: ");
             
             Integer id_busca = Console.readInt();
             
@@ -169,8 +174,99 @@ public class DeCaronaApp {
                 System.out.println("ID inválido!\n");
             menu();
         }
+        
+        if(opcao == 5){
+        
+            System.out.println("Informe o ID do transporte buscado: ");
+            
+            Integer id_busca = Console.readInt();
+            
+            for(int i = 0; i< listaTransporte.size();i++){
+                if(Objects.equals(listaTransporte.get(i).getId(), id_busca)){
+                    System.out.println("As informações do transporte buscado:");
+                    System.out.println("Placa: " +listaTransporte.get(i).getPlaca());
+                    System.out.println("Tipo de veículo: " +listaTransporte.get(i).getTipo());
+                    System.out.println("Valor cobrado: " +listaTransporte.get(i).getValor());
+                    System.out.println("Capacidade do veículo: " +listaTransporte.get(i).getCapacidade());
+                    System.out.println("Horário de saída: " +listaTransporte.get(i).getSaida());
+                    System.out.println("Local de saída: " +listaTransporte.get(i).getLocalSaida());
+                    System.out.println("Horário de retorno: " +listaTransporte.get(i).getRetorno());
+                    System.out.println("Local de retorno: " +listaTransporte.get(i).getLocalRetorno());
+                    System.out.println("ID do vepiculo: " +listaTransporte.get(i).getId());
+                }
+            }
+            System.out.println("ID de transporte inválido!");
+            
+            menu();
+            
         }
-}
+        
+        if(opcao == 6){
+            System.out.println("Informe o CPF do caronista a ser buscado: ");
+            
+            String cpf_busca = Console.readString();
+            
+            for(int i = 0; i < listaCaronista.size(); i++){
+                if(listaCaronista.get(i).getCpf() == cpf_busca){
+                    System.out.println("Nome: " +listaCaronista.get(i).getNome());
+                    System.out.println("Idade: " +listaCaronista.get(i).getIdade());
+                    System.out.println("RG: " +listaCaronista.get(i).getRg());
+                }
+               
+            }
+            
+             System.out.println("CPF de caronista Inválido!");
+                
+                menu();
+
+        }
+        
+        if(opcao == 7){
+            System.out.println("Listar ponto Turístico por bairro.");
+            System.out.println("Insira o Bairro: ");
+            
+            String bairro = Console.readString();
+            
+            for(int i = 0; i < listaPonto.size(); i++){
+                if(listaPonto.get(i).getLocaPontoTuristico().equals(bairro)){
+                    System.out.println(" \n" +listaPonto.get(i).getNomePontoTuristico());
+                }
+            
+            }
+            System.out.println("Bairro inválido!");
+            
+            menu();
+        }
+        
+        if(opcao == 8){
+            System.out.println("Transportes por ponto turístico.");
+            System.out.println("Digite o ponto turístico: ");
+            
+            String ponto = Console.readString();
+            
+            for(int i = 0; i < listaTransporte.size(); i++){
+                if(listaTransporte.get(i).getLocalRetorno().equals(ponto)){
+                    System.out.println("Placa: " +listaTransporte.get(i).getPlaca());
+                    System.out.println("Tipo de transporte: " +listaTransporte.get(i).getTipo());
+                    System.out.println("Capacidade: " +listaTransporte.get(i).getCapacidade());
+                    System.out.println("Valor: " +listaTransporte.get(i).getValor());
+                }
+                
+                System.out.println("Ponto turístisco inexistente!");
+                menu();
+            }
+        }
+        if(opcao == 0){
+            
+            System.out.println("Obrigado e volte sempre!");
+            
+            System.exit(0);
+        }
+            
+        }
+        
+        }
+
         
        
     
