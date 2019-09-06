@@ -27,13 +27,14 @@ public class DeCaronaApp {
         menu(); 
         
     }
+        //Criação das listas
          static List<Caronista> listaCaronista = new ArrayList<>();
          static List<Transporte> listaTransporte = new ArrayList<>();
          static List<PontoTuristico> listaPonto = new ArrayList<>();
         
 
         
-        
+        //Método Menu
         public static void menu() throws IOException{
         
         int opcao;
@@ -51,6 +52,7 @@ public class DeCaronaApp {
             System.out.print("CPF: ");
             String cpf = Console.readString();
             
+            //checagem de cpf para evitar duplicidade
             for(int i = 0; i < listaCaronista.size();i++){
                 
                 if(listaCaronista.get(i).getCpf().equals(cpf)){
@@ -78,7 +80,7 @@ public class DeCaronaApp {
             listaCaronistaTransporte.add(c1);
             
          
-            
+            //Invoca o método menu após a realização da opção
             menu();
          }
         
@@ -89,6 +91,7 @@ public class DeCaronaApp {
             System.out.println("Placa: ");
             String placa = Console.readString();
             
+            //Checagem de duplicidade
             for(int i = 0; i < listaTransporte.size();i++){
                 
             if(listaTransporte.get(i).getPlaca().equals(placa)){
@@ -161,6 +164,7 @@ public class DeCaronaApp {
             
             Integer id_busca = Console.readInt();
             
+            //Exibição do ponto turístico por ID
             for(int i = 0; i < listaPonto.size(); i++){
                 if(listaPonto.get(i).getIdPonto() == id_busca){
                     System.out.println("As informações do ponto turístico: ");
@@ -181,6 +185,7 @@ public class DeCaronaApp {
             
             Integer id_busca = Console.readInt();
             
+            //Busca e exibição do transporte por ID, caso seja encontrado
             for(int i = 0; i< listaTransporte.size();i++){
                 if(Objects.equals(listaTransporte.get(i).getId(), id_busca)){
                     System.out.println("As informações do transporte buscado:");
@@ -195,6 +200,8 @@ public class DeCaronaApp {
                     System.out.println("ID do vepiculo: " +listaTransporte.get(i).getId());
                 }
             }
+            
+            //Mensagem exibida caso o id não exista
             System.out.println("ID de transporte inválido!");
             
             menu();
@@ -206,6 +213,7 @@ public class DeCaronaApp {
             
             String cpf_busca = Console.readString();
             
+            //Exibe os dados do caronista caso o cpf seja correspondente
             for(int i = 0; i < listaCaronista.size(); i++){
                 if(listaCaronista.get(i).getCpf() == cpf_busca){
                     System.out.println("Nome: " +listaCaronista.get(i).getNome());
@@ -227,6 +235,7 @@ public class DeCaronaApp {
             
             String bairro = Console.readString();
             
+            //Busca do ponto por bairro
             for(int i = 0; i < listaPonto.size(); i++){
                 if(listaPonto.get(i).getLocaPontoTuristico().equals(bairro)){
                     System.out.println(" \n" +listaPonto.get(i).getNomePontoTuristico());
@@ -244,6 +253,7 @@ public class DeCaronaApp {
             
             String ponto = Console.readString();
             
+            //Busca do ponto turistico
             for(int i = 0; i < listaTransporte.size(); i++){
                 if(listaTransporte.get(i).getLocalRetorno().equals(ponto)){
                     System.out.println("Placa: " +listaTransporte.get(i).getPlaca());
@@ -256,6 +266,8 @@ public class DeCaronaApp {
                 menu();
             }
         }
+        
+        //Opção de saída
         if(opcao == 0){
             
             System.out.println("Obrigado e volte sempre!");
