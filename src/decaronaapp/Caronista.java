@@ -6,6 +6,8 @@
 package decaronaapp;
 
 
+import static decaronaapp.DeCaronaApp.listaCaronista;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -17,19 +19,42 @@ class Caronista{
 	private final String rg;
 	private final String nome;
 	private final int idade;
-        private final List<Caronista> listaCaronistas;
+        private final int id_caro;
         
+        private static List<Caronista> listaCaronistas;
         
-        public Caronista(String cpf, String rg, String nome, Integer idade){
+      
+        public Caronista(String cpf, String rg, String nome, Integer idade, Integer id_caro){
         this.cpf = cpf;
         this.rg = rg;
         this.nome = nome;
         this.idade = idade;
-        
-        listaCaronistas = new ArrayList<>();
+        this.id_caro = id_caro;
         }
         
-        public String getCpf() {
+        
+       /*
+        public void buscaCaronista(String cpf_busca) throws IOException{
+            
+        
+           
+        for(int i = 0; i < listaCaronista.size(); i++){
+                if(listaCaronista.get(i).getCpf() == cpf_busca){
+                    System.out.println("Nome: " +listaCaronista.get(i).getNome());
+                    System.out.println("Idade: " +listaCaronista.get(i).getIdade());
+                    System.out.println("RG: " +listaCaronista.get(i).getRg());
+                }
+                System.out.println("CPF de caronista Inválido!");
+            
+        }
+        
+        }*/
+        
+        public Integer getId(){
+        return this.id_caro;
+        }
+        
+        public String getCpf(){
         return this.cpf;
         }
         

@@ -22,7 +22,7 @@ class Transporte{
         private final int id_car2;
         
         private static List<PontoTuristico> listaPontos = new ArrayList<>();
-        
+        private static List<Caronista> listaCaronistaTransporte = new ArrayList<>();
         
         public Transporte(String placa, String tipo, Double valor, Integer capacidade, Integer saida, String localSaida, Integer retorno, String localRetorno, Integer id_car2){
         this.placa = placa;
@@ -37,7 +37,9 @@ class Transporte{
         }
         
 
-                
+        public Integer getId(){
+        return this.id_car2;
+        }       
 
         public String getPlaca(){
         return this.placa;
